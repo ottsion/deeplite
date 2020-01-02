@@ -1,5 +1,5 @@
 import torch
-
+import torch.nn as nn
 
 def accuracy(output, target):
     with torch.no_grad():
@@ -9,6 +9,11 @@ def accuracy(output, target):
         correct += torch.sum(pred == target).item()
     return correct / len(target)
 
+def loss_all(output, target, loss_fn=nn.MSELoss()):
+    loss_all = 0.0
+    loss = loss_fn(output, target)
+    loss_all += loss.item()
+    return loss_all
 
 def top_k_acc(output, target, k=3):
     with torch.no_grad():

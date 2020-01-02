@@ -6,7 +6,7 @@
         "type": "FM",
         "args": {
             "field_dims": 39,
-            "embed_dim": 15
+            "embed_dim": 5
         }
     },
     "data_loader": {
@@ -27,9 +27,9 @@
             "amsgrad": true
         }
     },
-    "loss": "nll_loss",
+    "loss": "bce_with_log_loss",
     "metrics": [
-        "accuracy", "top_k_acc"
+        "accuracy"
     ],
     "lr_scheduler": {
         "type": "StepLR",
@@ -39,7 +39,7 @@
         }
     },
     "trainer": {
-        "epochs": 100,
+        "epochs": 150,
 
         "save_dir": "saved/",
         "save_period": 1,
@@ -48,6 +48,7 @@
         "monitor": "min val_loss",
         "early_stop": 10,
 
+        "image":false,
         "tensorboard": true
     }
 }

@@ -1,6 +1,6 @@
 from torchvision import datasets, transforms
 from base import BaseDataLoader
-from data_loader.DataSet_builder import *
+from data_loader.dataset_builder import *
 
 
 class MnistDataLoader(BaseDataLoader):
