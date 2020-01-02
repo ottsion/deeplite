@@ -8,6 +8,7 @@ class FeaturesLinear(nn.Module):
 
     def __init__(self, field_dims, output_dim=1):
         super(FeaturesLinear, self).__init__()
+        print("sum(field_dims): ", sum(field_dims))
         self.fc = nn.Embedding(sum(field_dims), output_dim)
         self.bias = nn.Parameter(torch.zeros((output_dim,)))
         # 按照所给定的轴参数返回元素的梯形累计和，axis=0，按照行累加。axis=1，按照列累加。axis不给定具体值，就把numpy数组当成一个一维数组。
@@ -15,6 +16,7 @@ class FeaturesLinear(nn.Module):
 
     def forward(self, x):
         x = x + x.new_tensor(self.offsets).unsqueeze(0)
+        print("x max: ", x.max())
         return torch.add(torch.sum(self.fc(x), dim=1), self.bias)
 
 
