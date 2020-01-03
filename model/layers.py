@@ -1,6 +1,5 @@
 import torch as torch
 import torch.nn as nn
-import torch.nn.functional as F
 import numpy as np
 
 
@@ -11,18 +10,18 @@ class FeaturesLinear(nn.Module):
         print("field_dims: ", field_dims)
         self.fc = nn.Embedding(sum(field_dims), output_dim)
         self.bias = nn.Parameter(torch.zeros((output_dim,)), requires_grad=True)
-        # 按照所给定的轴参数返回元素的梯形累计和，axis=0，按照行累加。axis=1，按照列累加。axis不给定具体值，就把numpy数组当成一个一维数组。
+        # accumulation add function to sparse the categories like:[1,3,4,7]==>[1,4,8,15]
         self.offsets = np.array((0, *np.cumsum(field_dims)[:-1]), dtype=np.long)
 
     def forward(self, x):
-        print("x: ", x.shape)
-        print("self.offsets: ", self.offsets)
-        print("==: ", x.new_tensor(self.offsets))
+        """
+          to change the category Serial number to ordered number
+          like we got x = [2, 4] means category_1's id is 2, and category_2's id is 4
+          assume field_dims like [3, 8], category_1 has 3 ids, category_2 has 8 ids. ==> offsets=[0, 3]
+          x = [0 + 2, 4 + 3] ==> [2, 7]
+        """
         x = x + x.new_tensor(self.offsets).unsqueeze(0)
-        print("x: ", x.shape)
-        print(x)
-        x = self.fc(x)
-        return torch.sum(x, dim=1)+self.bias
+        return torch.sum(self.fc(x), dim=1)+self.bias
 
 
 class FeaturesEmbedding(nn.Module):
