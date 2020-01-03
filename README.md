@@ -1,15 +1,17 @@
 # Basic DeepLearning Models
 
 
-the structure uses the pytorch template code
+The structure uses the pytorch template code
 
 ## Usage
 
-all code started with train.py, we use config file to differentiate the model we used.
+All code started with train.py, we use config file to differentiate the model we used.
 
-just like: `python train -c model_config.json`
+Just like: `python train -c model_config.json`
 
-for `Factorization Machine` test you can just run `python train.py -c ./configs/config_fm.json`
+For `Factorization Machine` 
+
+run `python train.py -c ./configs/config_fm.json`
 
 ## Models
 
@@ -17,6 +19,8 @@ for `Factorization Machine` test you can just run `python train.py -c ./configs/
 | ------ | ------ | 
 | Factorization Machine | [S Rendle, Factorization Machines, 2010.](https://www.csie.ntu.edu.tw/~b97053/paper/Rendle2010FM.pdf) | 
 | Field-aware Factorization Machine | [Y Juan, et al. Field-aware Factorization Machines for CTR Prediction, 2015.](https://www.csie.ntu.edu.tw/~cjlin/papers/ffm.pdf) |
+| DeepFM|[H Guo, et al. DeepFM: A Factorization-Machine based Neural Network for CTR Prediction, 2017.](https://arxiv.org/abs/1703.04247)|
 
 ## Reference 
-rec based on：[pytorch-fm](https://github.com/rixwew/pytorch-fm.git)
+
+Rec based on：[pytorch-fm](https://github.com/rixwew/pytorch-fm.git)
