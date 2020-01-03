@@ -131,7 +131,7 @@ class ConfigParser:
     def log_dir(self):
         return self._log_dir
 
-# helper functions to update config dict with custom cli options
+# helper models_rec to update config dict with custom cli options
 def _update_config(config, modification):
     if modification is None:
         return config

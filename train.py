@@ -24,9 +24,9 @@ def main(config):
     valid_data_loader = data_loader.split_validation()
 
     if config['name'] == "fm":
-        import model.fm as module_arch
+        import model.models_rec.fm as module_arch
     else:
-        import model.model as module_arch
+        from model.models_nlp import model as module_arch
 
     # build model architecture, then print to console
     model = config.init_obj('arch', module_arch)

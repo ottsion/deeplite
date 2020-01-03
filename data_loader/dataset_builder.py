@@ -34,14 +34,12 @@ class CriteoDataset(Dataset):
     def __getitem__(self, idx):
         if self.train:
             dataI, targetI = self.train_data[idx, :], self.target[idx]
-            Xi = torch.from_numpy(dataI.astype(np.float32)).unsqueeze(-1)
-            Xv = torch.from_numpy(np.ones_like(dataI))
+            Xi = torch.from_numpy(dataI.astype(np.longlong)).unsqueeze(-1)
             target = torch.FloatTensor(np.array([targetI]))
             return Xi, target
         else:
             dataI = self.test_data.iloc[idx, :]
-            Xi = torch.from_numpy(dataI.astype(np.float32)).unsqueeze(-1)
-            Xv = torch.from_numpy(np.ones_like(dataI))
+            Xi = torch.from_numpy(dataI.astype(np.longlong)).unsqueeze(-1)
             return Xi
 
     def __len__(self):

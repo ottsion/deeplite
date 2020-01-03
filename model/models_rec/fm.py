@@ -15,6 +15,6 @@ class FM(BaseModel):
         self.fm = FactorizationMachine(reduce_sum=True)
 
     def forward(self, x):
-        # x = x.transpose(1, 2)
+        x = x.transpose(1, 2)
         x = self.linear(x) + self.fm(self.embedding(x))
         return x.squeeze(1)
