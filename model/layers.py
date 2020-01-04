@@ -95,3 +95,28 @@ class MultiLayerPerceptron(nn.Module):
 
     def forward(self, x):
         return self.mlp(x)
+
+
+class CrossNetwork(nn.Module):
+
+    def __init__(self, embed_dim, num_layers):
+        super().__init__()
+        self.embed_dim = embed_dim
+        self.num_layers = num_layers
+        self.w = nn.ModuleList([
+            nn.Linear(embed_dim, 1, bias=False) for _ in range(self.num_layers)
+        ])
+        self.b = nn.ParameterList([
+            nn.Parameter(torch.zeros((embed_dim,))) for _ in range(self.num_layers)
+        ])
+
+    def forward(self, x):
+        """
+        $y=x_0*x^'*w + b + x$
+        $x_0$ means the origin x
+        :param x:  (batch_size, embed_dim)
+        """
+        x0 = x
+        for index in range(self.num_layers):
+            x = x0 * self.w(x)[index] + self.b(x)[index] + x
+        return x
