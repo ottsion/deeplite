@@ -2,11 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="60fd956a-3bea-488f-97ad-795b08089144" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/model/models_rec/dcn.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/model/models_rec/wide_deep.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/deeplite.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/deeplite.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/models_rec/XDeepFM.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/model/layers.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/layers.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -35,11 +33,6 @@
         <option value="Python Script" />
       </list>
     </option>
-  </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>1,1,1,1,1,1,1,1,1,1,1,1,1,</find>
-    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -144,7 +137,7 @@
       <workItem from="1577784674553" duration="540000" />
       <workItem from="1577802582028" duration="23256000" />
       <workItem from="1578018784693" duration="8221000" />
-      <workItem from="1578117176115" duration="10271000" />
+      <workItem from="1578117176115" duration="15669000" />
     </task>
     <task id="LOCAL-00001" summary="update ffm">
       <created>1578035497404</created>
@@ -160,7 +153,21 @@
       <option name="project" value="LOCAL" />
       <updated>1578036275583</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="update w&amp;d dcn">
+      <created>1578147131815</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1578147131815</updated>
+    </task>
+    <task id="LOCAL-00004" summary="update README">
+      <created>1578147641130</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1578147641130</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -195,7 +202,9 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="update ffm" />
-    <option name="LAST_COMMIT_MESSAGE" value="update ffm" />
+    <MESSAGE value="update w&amp;d dcn" />
+    <MESSAGE value="update README" />
+    <option name="LAST_COMMIT_MESSAGE" value="update README" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/deeplite$train.coverage" NAME="train Coverage Results" MODIFIED="1578033537939" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />

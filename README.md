@@ -24,8 +24,10 @@ For each task of your owner, you should build dataloader in `./data_loader` and 
 | DeepFM|[H Guo, et al. DeepFM: A Factorization-Machine based Neural Network for CTR Prediction, 2017.](https://arxiv.org/abs/1703.04247)|
 | Wide&Deep | [HT Cheng, et al. Wide & Deep Learning for Recommender Systems, 2016.](https://arxiv.org/abs/1606.07792) |
 | Deep Cross Network | [R Wang, et al. Deep & Cross Network for Ad Click Predictions, 2017.](https://arxiv.org/abs/1708.05123) |
+| xDeepFM | [J Lian, et al. xDeepFM: Combining Explicit and Implicit Feature Interactions for Recommender Systems, 2018.](https://arxiv.org/abs/1803.05170) |
 
 ## Reference 
 
 Pytorch template based on: [pytorch-template](https://github.com/victoresque/pytorch-template.git)
+
 Rec based on：[pytorch-fm](https://github.com/rixwew/pytorch-fm.git)

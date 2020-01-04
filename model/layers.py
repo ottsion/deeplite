@@ -1,6 +1,7 @@
 import torch as torch
 import torch.nn as nn
 import numpy as np
+import torch.nn.functional as F
 
 
 class FeaturesLinear(nn.Module):
@@ -107,7 +108,7 @@ class CrossNetwork(nn.Module):
             nn.Linear(embed_dim, 1, bias=False) for _ in range(self.num_layers)
         ])
         self.b = nn.ParameterList([
-            nn.Parameter(torch.zeros((embed_dim,))) for _ in range(self.num_layers)
+            nn.Parameter(torch.zeros((embed_dim,)), requires_grad=True) for _ in range(self.num_layers)
         ])
 
     def forward(self, x):
@@ -118,5 +119,48 @@ class CrossNetwork(nn.Module):
         """
         x0 = x
         for index in range(self.num_layers):
-            x = x0 * self.w(x)[index] + self.b(x)[index] + x
+            x = x0 * self.w[index](x) + self.b[index](x) + x
         return x
+
+
+class CompressedInteractionNetwork(nn.Module):
+
+    def __init__(self, input_dim, cross_layer_sizes, split_half=True):
+        super().__init__()
+        self.num_layers = len(cross_layer_sizes)
+        self.split_half = split_half
+        self.conv_layers = torch.nn.ModuleList()
+        pred_dim, fc_input_dim = input_dim, 0
+        for cross_layer_size in cross_layer_sizes:
+            self.conv_layers.append(
+                nn.Conv1d(input_dim*pred_dim, cross_layer_size, 1, stride=1, dilation=1, bias=True)
+            )
+            if self.split_half:
+                cross_layer_size //= 2
+            pred_dim = cross_layer_size
+            fc_input_dim += pred_dim
+        self.fc = nn.Linear(fc_input_dim, 1)
+
+    def forward(self, x):
+        """
+        类似于RNN，不过这里上下层参数不同，同级处理最后合并各个结果
+        :param x: (batch_size, num_fields, embed_dim)   128*1205*256
+        :return:
+        """
+        xs = list()
+        # x0:(num_field_dim, embed_dim, 1)
+        x0, h = x.unsqueeze(2), x
+        for index in range(self.num_layers):
+            # x ==> (num_field_dim, embed_dim, 1) * (num_field_dim, 1, embed_dim)
+            # x ==> (num_field_dim, embed_dim, embed_dim)
+            x = x0 * h.unsqueeze(1)
+            batch_size, f0_dim, fin_dim, embed_dim = x.shape
+            x = x.view(batch_size, f0_dim*fin_dim, embed_dim)
+            x = F.relu(self.conv_layers[index](x))
+            if self.split_half and index != self.num_layers - 1:
+                x, h = torch.split(x, x.shape[1]//2, dim=1)
+            else:
+                h = x
+            xs.append(x)
+        return self.fc(torch.sum(torch.cat(xs, dim=1), 2))
+
