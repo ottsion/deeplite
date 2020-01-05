@@ -9,6 +9,14 @@ def accuracy(output, target):
         correct += torch.sum(pred == target).item()
     return correct / len(target)
 
+def accuracy_sigmod(output, target):
+    with torch.no_grad():
+        pred = output.ge(0.5)
+        assert pred.shape[0] == len(target)
+        correct = 0
+        correct += torch.sum(pred == target).item()
+    return correct / len(target)
+
 def loss_all(output, target, loss_fn=nn.MSELoss()):
     loss_all = 0.0
     loss = loss_fn(output, target)
