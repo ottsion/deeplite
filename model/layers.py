@@ -10,7 +10,7 @@ class FeaturesLinear(nn.Module):
         super(FeaturesLinear, self).__init__()
         print("field_dims: ", field_dims)
         self.fc = nn.Embedding(sum(field_dims), output_dim)
-        self.bias = nn.Parameter(torch.zeros((output_dim,)), requires_grad=True)
+        self.bias = nn.Parameter(torch.zeros((output_dim,)))
         # accumulation add function to sparse the categories like:[1,3,4,7]==>[1,4,8,15]
         self.offsets = np.array((0, *np.cumsum(field_dims)[:-1]), dtype=np.long)
 

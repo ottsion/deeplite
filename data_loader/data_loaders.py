@@ -1,6 +1,8 @@
 from torchvision import datasets, transforms
+from tqdm import tqdm
+
 from base import BaseDataLoader
-from data_loader.dataset_builder import *
+from data_loader.criteo_dataset import *
 
 
 class MnistDataLoader(BaseDataLoader):
@@ -22,3 +24,12 @@ class CriteoDataLoader(BaseDataLoader):
         self.data_dir = data_dir
         self.dataset = CriteoDataset(self.data_dir)
         super().__init__(self.dataset, batch_size, shuffle, validation_split, num_workers)
+
+
+# dataloader = CriteoDataLoader("../datas/criteo/raw/", 128)
+# for k, v in dataloader:
+#     print(k)
+#     print(v)
+#     break
+# print("over")
+
