@@ -45,7 +45,7 @@ class CriteoDataset(torch.utils.data.Dataset):
         with self.env.begin(write=False) as txn:
             np_array = np.frombuffer(
                 txn.get(struct.pack('>I', index)), dtype=np.uint32).astype(dtype=np.long)
-        return np_array[1:], np_array[0].astype(dtype=np.float)
+        return np_array[1:].astype(dtype=np.longlong), np_array[0].astype(dtype=np.float)
 
     def __len__(self):
         return self.length
