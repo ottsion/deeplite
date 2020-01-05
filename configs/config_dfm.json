@@ -5,33 +5,33 @@
     "arch": {
         "type": "DeepFM",
         "args": {
-            "field_dims": [1,1,1,1,1,1,1,1,1,1,1,1,1,10,22,7,6,7,7,3,9,3,5,6,7,7,8,5,7,10,14,4,4,7,3,9,8,11,5],
-            "embed_dim": 50,
-            "mlp_dims": [50, 25],
+            "field_dims": [9,23,20,15,26,32,19,18,37,5,10,5,17,10,22,8,7,7,8,3,9,3,5,6,8,7,8,5,8,10,14,5,5,8,4,9,9,12,6],
+            "embed_dim": 15,
+            "mlp_dims":[28,56,28],
             "dropout": 0.5
         }
     },
     "data_loader": {
         "type": "CriteoDataLoader",
         "args":{
-            "data_dir": "./datas/criteo",
+            "data_dir": "datas/criteo/raw/train.txt",
             "batch_size": 128,
             "shuffle": true,
             "validation_split": 0.1,
-            "num_workers": 2
+            "num_workers": 0
         }
     },
     "optimizer": {
         "type": "Adam",
         "args":{
-            "lr": 0.001,
+            "lr": 0.0009,
             "weight_decay": 0,
             "amsgrad": true
         }
     },
     "loss": "bce_with_log_loss",
     "metrics": [
-        "accuracy"
+        "accuracy_sigmod"
     ],
     "lr_scheduler": {
         "type": "StepLR",

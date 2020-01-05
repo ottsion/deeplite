@@ -3,8 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="60fd956a-3bea-488f-97ad-795b08089144" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configs/config_fm.json" beforeDir="false" afterPath="$PROJECT_DIR$/configs/config_fm.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/metric.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/metric.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/configs/config_deepfm.json" beforeDir="false" afterPath="$PROJECT_DIR$/configs/config_dfm.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/layers.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/layers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/models_rec/deepfm.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/models_rec/deepfm.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/train.py" beforeDir="false" afterPath="$PROJECT_DIR$/train.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -128,7 +130,7 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/train.py" />
-      <option name="PARAMETERS" value="-c ./configs/config_fm.json" />
+      <option name="PARAMETERS" value="-c ./configs/config_dfm.json" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -164,7 +166,7 @@
       <workItem from="1577784674553" duration="540000" />
       <workItem from="1577802582028" duration="23256000" />
       <workItem from="1578018784693" duration="8221000" />
-      <workItem from="1578117176115" duration="34492000" />
+      <workItem from="1578117176115" duration="36147000" />
     </task>
     <task id="LOCAL-00001" summary="update ffm">
       <created>1578035497404</created>
@@ -208,7 +210,14 @@
       <option name="project" value="LOCAL" />
       <updated>1578236012303</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="update accuracy_sigmod">
+      <created>1578236402763</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1578236402763</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -247,9 +256,10 @@
     <MESSAGE value="update README" />
     <MESSAGE value="update XDeepFM" />
     <MESSAGE value="update train fm test" />
-    <option name="LAST_COMMIT_MESSAGE" value="update train fm test" />
+    <MESSAGE value="update accuracy_sigmod" />
+    <option name="LAST_COMMIT_MESSAGE" value="update accuracy_sigmod" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/deeplite$train.coverage" NAME="train Coverage Results" MODIFIED="1578236288770" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/deeplite$train.coverage" NAME="train Coverage Results" MODIFIED="1578239012405" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

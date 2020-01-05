@@ -83,7 +83,7 @@ class MultiLayerPerceptron(nn.Module):
 
     def __init__(self, input_dim, embed_dims, dropout, output_layer=True):
         super().__init__()
-        layers = nn.ModuleList()
+        layers = list()
         for embed_dim in embed_dims:
             layers.append(nn.Linear(input_dim, embed_dim))
             layers.append(nn.BatchNorm1d(embed_dim))
@@ -92,7 +92,7 @@ class MultiLayerPerceptron(nn.Module):
             input_dim = embed_dim
         if output_layer:
             layers.append(nn.Linear(input_dim, 1))
-        self.mlp = layers
+        self.mlp = torch.nn.Sequential(*layers)
 
     def forward(self, x):
         return self.mlp(x)

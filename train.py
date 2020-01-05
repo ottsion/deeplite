@@ -25,6 +25,8 @@ def main(config):
 
     if config['name'] == "fm":
         import model.models_rec.fm as module_arch
+    elif config['name'] == "DeepFM":
+        import model.models_rec.deepfm as module_arch
     else:
         from model.models_nlp import model as module_arch
 
