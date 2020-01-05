@@ -26,6 +26,12 @@ For each task of your owner, you should build dataloader in `./data_loader` and 
 | Deep Cross Network | [R Wang, et al. Deep & Cross Network for Ad Click Predictions, 2017.](https://arxiv.org/abs/1708.05123) |
 | xDeepFM | [J Lian, et al. xDeepFM: Combining Explicit and Implicit Feature Interactions for Recommender Systems, 2018.](https://arxiv.org/abs/1803.05170) |
 
+## Performance
+
+| Model | acc | loss |
+| ------ | ------ | ------ | 
+|FM|0.8535|0.681576|
+
 ## Reference 
 
 Pytorch template based on: [pytorch-template](https://github.com/victoresque/pytorch-template.git)
