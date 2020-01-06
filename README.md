@@ -15,7 +15,7 @@ python train.py -c ./configs/config_fm.json
 
 For each task of your owner, you should build dataloader in `./data_loader` and config the json file in `./configs` 
 
-## Models
+## CTR Models
 
 | Model | Reference | 
 | ------ | ------ | 
@@ -25,6 +25,19 @@ For each task of your owner, you should build dataloader in `./data_loader` and 
 | Wide&Deep | [HT Cheng, et al. Wide & Deep Learning for Recommender Systems, 2016.](https://arxiv.org/abs/1606.07792) |
 | Deep Cross Network | [R Wang, et al. Deep & Cross Network for Ad Click Predictions, 2017.](https://arxiv.org/abs/1708.05123) |
 | xDeepFM | [J Lian, et al. xDeepFM: Combining Explicit and Implicit Feature Interactions for Recommender Systems, 2018.](https://arxiv.org/abs/1803.05170) |
+
+
+## NLP Models
+
+| Model | Reference | 
+| ------ | ------ | 
+| fastText | [Bag of Tricks for Efficient Text Classification](https://arxiv.org/abs/1607.01759)|
+|TextCNN | [Convolutional Neural Networks for Sentence Classification](https://arxiv.org/abs/1408.5882)
+
+## DataSet
+
+ - CTR PREDICTION: [criteo](http://research.criteo.com/outreach/)
+ - NLP CLASSIFY: [THUCNews](http://thuctc.thunlp.org/)
 
 ## Performance
 

@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="60fd956a-3bea-488f-97ad-795b08089144" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/model/models_nlp/text_cnn.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/models_nlp/model.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/models_nlp/fast_text.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/train.py" beforeDir="false" afterPath="$PROJECT_DIR$/train.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -171,7 +168,7 @@
       <workItem from="1577802582028" duration="23256000" />
       <workItem from="1578018784693" duration="8221000" />
       <workItem from="1578117176115" duration="37034000" />
-      <workItem from="1578322342238" duration="1700000" />
+      <workItem from="1578322342238" duration="2310000" />
     </task>
     <task id="LOCAL-00001" summary="update ffm">
       <created>1578035497404</created>
@@ -236,7 +233,14 @@
       <option name="project" value="LOCAL" />
       <updated>1578239711092</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="update fasttext">
+      <created>1578324134452</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1578324134452</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -277,7 +281,8 @@
     <MESSAGE value="update train fm test" />
     <MESSAGE value="update accuracy_sigmod" />
     <MESSAGE value="update dfm" />
-    <option name="LAST_COMMIT_MESSAGE" value="update dfm" />
+    <MESSAGE value="update fasttext" />
+    <option name="LAST_COMMIT_MESSAGE" value="update fasttext" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/deeplite$train.coverage" NAME="train Coverage Results" MODIFIED="1578239414495" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
