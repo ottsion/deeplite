@@ -2,8 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="60fd956a-3bea-488f-97ad-795b08089144" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/model/models_nlp/text_cnn.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/models_nlp/model.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/models_nlp/fast_text.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/train.py" beforeDir="false" afterPath="$PROJECT_DIR$/train.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -41,21 +44,22 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/pytorch-fm" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/model/models_nlp" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="E:\workspace\pycharmProject\deeplite\model\models_cv" />
-      <recent name="E:\workspace\pycharmProject\deeplite" />
-      <recent name="F:\code\python\deeplite\datas\criteo" />
-      <recent name="E:\workspace\pycharmProject\pytorch-template-master\deeplite\configs" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\workspace\pycharmProject\deeplite\model\models_nlp" />
       <recent name="E:\workspace\pycharmProject\deeplite\model\models_rec" />
+      <recent name="E:\workspace\pycharmProject\pytorch-template-master\deeplite\configs" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\code\python\deeplite\model\models_nlp" />
+      <recent name="E:\workspace\pycharmProject\deeplite\model\models_cv" />
+      <recent name="E:\workspace\pycharmProject\deeplite" />
+      <recent name="F:\code\python\deeplite\datas\criteo" />
       <recent name="E:\workspace\pycharmProject\pytorch-template-master\deeplite\configs" />
     </key>
   </component>
@@ -98,6 +102,9 @@
       <module name="deeplite" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/data_loader" />
       <option name="IS_MODULE_SDK" value="true" />
@@ -164,6 +171,7 @@
       <workItem from="1577802582028" duration="23256000" />
       <workItem from="1578018784693" duration="8221000" />
       <workItem from="1578117176115" duration="37034000" />
+      <workItem from="1578322342238" duration="1700000" />
     </task>
     <task id="LOCAL-00001" summary="update ffm">
       <created>1578035497404</created>

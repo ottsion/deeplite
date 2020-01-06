@@ -4,7 +4,7 @@ from tqdm import tqdm
 import data_loader.data_loaders as module_data
 import model.loss as module_loss
 import model.metric as module_metric
-from model.models_nlp import model as module_arch
+from model.models_nlp import fast_text as module_arch
 from parse_config import ConfigParser
 
 

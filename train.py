@@ -28,7 +28,7 @@ def main(config):
     elif config['name'] == "DeepFM":
         import model.models_rec.deepfm as module_arch
     else:
-        from model.models_nlp import model as module_arch
+        from model.models_nlp import fast_text as module_arch
 
     # build model architecture, then print to console
     model = config.init_obj('arch', module_arch)
