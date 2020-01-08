@@ -18,6 +18,9 @@ class FastText(BaseModel):
         self.fc = nn.Sequential(*layers)
 
     def forward(self, x):
+        print("===============")
+        print(x.shape)
+        print(x)
         embed_x1 = self.embedding(x[0])
         embed_x2 = self.embedding(x[1])
         x = torch.cat((embed_x1, embed_x2), dim=-1)

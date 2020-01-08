@@ -3,6 +3,7 @@ from tqdm import tqdm
 
 from base import BaseDataLoader
 from data_loader.criteo_dataset import *
+from data_loader.thucnews_dataset import ThucnewsDataset
 
 
 class MnistDataLoader(BaseDataLoader):
@@ -25,11 +26,11 @@ class CriteoDataLoader(BaseDataLoader):
         self.dataset = CriteoDataset(self.data_dir)
         super().__init__(self.dataset, batch_size, shuffle, validation_split, num_workers)
 
+class ThucnewsDataLoader(BaseDataLoader):
+    def __init__(self, data_dir, batch_size, shuffle=True, validation_split=0.0, num_workers=1):
+        self.data_dir = data_dir
+        self.dataset = ThucnewsDataset(self.data_dir)
+        super().__init__(self.dataset, batch_size, shuffle, validation_split, num_workers)
 
-# dataloader = CriteoDataLoader("../datas/criteo/raw/", 128)
-# for k, v in dataloader:
-#     print(k)
-#     print(v)
-#     break
-# print("over")
+
 
