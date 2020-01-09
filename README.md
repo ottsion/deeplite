@@ -73,7 +73,7 @@ class CriteoDataLoader(BaseDataLoader):
 
 ## Tensorboard
 
-You can also see the tensorboard by running `tensorboard --logdir='./saved/log/fm'` at `localhost:6006`
+You can also see the tensorboard at `localhost:6006` by running `tensorboard --logdir='./saved/log/fm'`
 
 ## Reference 
 
