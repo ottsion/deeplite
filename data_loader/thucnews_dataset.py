@@ -26,50 +26,52 @@ class ThucnewsDataset(torch.utils.data.Dataset):
         https://www.csie.ntu.edu.tw/~r01922136/kaggle-2014-criteo.pdf
     """
 
-    def __init__(self, dataset_path=None, cache_path='.thucnews', rebuild_cache=False, data_sub=5000, max_text_len=100, min_word_count=2):
-        self.data_sub = data_sub
+    def __init__(self, dataset_path=None, cache_path='.thucnews', rebuild_cache=False, max_text_len=100, min_word_count=2):
         self.max_text_len = max_text_len
         self.min_word_count = min_word_count
+        self.cache_path = cache_path
         dirs = os.listdir(dataset_path)
         self.label_code = {label: index for index, label in enumerate(dirs)}
         if rebuild_cache or not Path(cache_path).exists():
             shutil.rmtree(cache_path, ignore_errors=True)
             if dataset_path is None:
                 raise ValueError('create cache: failed: dataset_path is None')
-            self.__build_cache(dataset_path, cache_path)
-        print("cache_path: ", cache_path)
-        self.env = lmdb.open(cache_path, create=False, lock=False, readonly=True)
+            else:
+                print("start build cache")
+                self.build_cache(dataset_path, cache_path)
+        self.env = lmdb.open(cache_path, create=False, lock=False, readonly=False)
+
         with self.env.begin(write=False) as txn:
-            self.length = txn.stat()['entries'] - 1
+            self.length = txn.stat()['entries'] - 2
             self.vocab_size = np.frombuffer(txn.get(b'vocab_size'), dtype=np.uint32)
             self.gram2_vocab_size = np.frombuffer(txn.get(b'gram2_vocab_size'), dtype=np.uint32)
-        print("-vocab_size: ", self.vocab_size)
-        print("-gram2_vocab_size: ", self.gram2_vocab_size)
+        print("vocab_size: ", self.vocab_size)
+        print("gram2_vocab_size: ", self.gram2_vocab_size)
+        print("data count: ", self.length)
+        print(self.label_code)
 
     def __getitem__(self, index):
-        print("here..", index)
         with self.env.begin(write=False) as txn:
-            print(txn)
             np_array = np.frombuffer(
                 txn.get(struct.pack('>I', index)), dtype=np.uint32).astype(dtype=np.long)
-        print("np_array; ", np_array)
-        return np_array[1:].astype(dtype=np.long), np_array[0].astype(dtype=np.float)
+        label = np_array[0].astype(np.longlong)
+        data = np_array[1:].reshape(2, self.max_text_len).astype(dtype=np.longlong)
+        return data, label
 
     def __len__(self):
         return self.length
 
-    def __build_cache(self, path, cache_path):
-        vocab_mapper, gram2_vocab_mapper = self.__get_feat_mapper(path)
+    def build_cache(self, path, cache_path):
+        vocab_mapper, gram2_vocab_mapper = self.get_feat_mapper(path)
         with lmdb.open(cache_path, map_size=int(1e11)) as env:
             with env.begin(write=True) as txn:
                 txn.put(b'vocab_size', self.vocab_size.tobytes())
                 txn.put(b'gram2_vocab_size', self.gram2_vocab_size.tobytes())
-            for buffer in self.__yield_buffer(path, vocab_mapper, gram2_vocab_mapper):
-                with env.begin(write=True) as txn:
+                for buffer in self.__yield_buffer(path, vocab_mapper, gram2_vocab_mapper):
                     for key, value in buffer:
                         txn.put(key, value)
 
-    def __get_feat_mapper(self, path):
+    def get_feat_mapper(self, path):
         vocab_cnts = defaultdict(int)
         gram2_vocab_cnts = defaultdict(int)
         dirs = os.listdir(path)
@@ -102,8 +104,8 @@ class ThucnewsDataset(torch.utils.data.Dataset):
         item_idx = 0
         buffer = list()
         dirs = os.listdir(path)
-        for dir in dirs:
-            sub_path = os.path.join(path, dir)
+        for dir_temp in dirs:
+            sub_path = os.path.join(path, dir_temp)
             file_names = os.listdir(sub_path)
             for file_name in file_names:
                 file_path = os.path.join(sub_path, file_name)
@@ -115,9 +117,6 @@ class ThucnewsDataset(torch.utils.data.Dataset):
                     for line in pbar:
                         words.append(line.rstrip('\n').replace('\t', ""))
                     words = "".join(words)
-                    if self.data_sub != 0 and self.data_sub > count:
-                        break
-                    print("words:", words)
                     count += 1
                     word_list = []
                     gram_list = []
@@ -130,11 +129,14 @@ class ThucnewsDataset(torch.utils.data.Dataset):
                         if index % 2 == 0:
                             gram_list.append(gram2_vocab_mapper.get(words[index: index+2], 0))
                     np_array = np.zeros(self.max_text_len * 2 + 1, dtype=np.uint32)
-                    np_array[0] = [int(self.label_code[file_name])]
+                    ids = 0
+                    np_array[0] = int(self.label_code[dir_temp])
                     for iid, word_index in enumerate(word_list):
-                        np_array[iid+1] = word_index
+                        ids += 1
+                        np_array[ids] = word_index
                     for iid, words_index in enumerate(gram_list):
-                        np_array[iid+1] = words_index
+                        ids += 1
+                        np_array[ids] = words_index
                     buffer.append((struct.pack('>I', item_idx), np_array.tobytes()))
                     item_idx += 1
                     if item_idx % buffer_size == 0:

@@ -12,7 +12,7 @@
     "data_loader": {
         "type": "CriteoDataLoader",
         "args":{
-            "data_dir": "datas/criteo/raw/train.txt",
+            "data_dir": "datas/criteo/train.txt",
             "batch_size": 128,
             "shuffle": true,
             "validation_split": 0.1,

@@ -18,12 +18,11 @@ class FastText(BaseModel):
         self.fc = nn.Sequential(*layers)
 
     def forward(self, x):
-        print("===============")
-        print(x.shape)
-        print(x)
-        embed_x1 = self.embedding(x[0])
-        embed_x2 = self.embedding(x[1])
+        word_list = x[:, 0, :]
+        gram_list = x[:, 1, :]
+        embed_x1 = self.embedding(word_list)
+        embed_x2 = self.embedding2(gram_list)
         x = torch.cat((embed_x1, embed_x2), dim=-1)
-        x = x.mean(dim=1)
+        x = x.mean(dim=1, keepdim=True)
         x = self.fc(x)
-        return F.log_softmax(x)
+        return F.log_softmax(x.squeeze(1), dim=1)

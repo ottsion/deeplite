@@ -14,13 +14,16 @@ from tqdm import tqdm
 class CriteoDataset(torch.utils.data.Dataset):
     """
     Criteo Display Advertising Challenge Dataset
+
     Data prepration:
         * Remove the infrequent features (appearing in less than threshold instances) and treat them as a single feature
         * Discretize numerical values by log2 transformation which is proposed by the winner of Criteo Competition
+
     :param dataset_path: criteo train.txt path.
     :param cache_path: lmdb cache path.
     :param rebuild_cache: If True, lmdb cache is refreshed.
     :param min_threshold: infrequent feature threshold.
+
     Reference:
         https://labs.criteo.com/2014/02/kaggle-display-advertising-challenge-dataset
         https://www.csie.ntu.edu.tw/~r01922136/kaggle-2014-criteo.pdf
@@ -39,13 +42,12 @@ class CriteoDataset(torch.utils.data.Dataset):
         with self.env.begin(write=False) as txn:
             self.length = txn.stat()['entries'] - 1
             self.field_dims = np.frombuffer(txn.get(b'field_dims'), dtype=np.uint32)
-        print("-field_dims: ", self.field_dims)
 
     def __getitem__(self, index):
         with self.env.begin(write=False) as txn:
             np_array = np.frombuffer(
                 txn.get(struct.pack('>I', index)), dtype=np.uint32).astype(dtype=np.long)
-        return np_array[1:].astype(dtype=np.longlong), np_array[0].astype(dtype=np.float)
+        return np_array[1:], np_array[0]
 
     def __len__(self):
         return self.length

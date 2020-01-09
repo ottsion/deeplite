@@ -14,6 +14,7 @@ python train.py -c ./configs/config_fm.json
 ```
 
 For each task of your owner, you should build dataloader in `./data_loader` and config the json file in `./configs` 
+Sometimes you will get tensor type error between long\float\int, all you need is to change your `dataset` file `__getitem__`
 
 ## CTR Models
 
@@ -36,14 +37,18 @@ For each task of your owner, you should build dataloader in `./data_loader` and 
 
 ## DataSet
 
- - CTR PREDICTION: [criteo](http://research.criteo.com/outreach/)
- - NLP CLASSIFY: [THUCNews](http://thuctc.thunlp.org/)
+|ModelType|DataSet|Source|
+|---|---|---|
+|CTR Prediction|CriteoDataset|[criteo](http://research.criteo.com/outreach/)|
+|NLP Classify|ThucnewsDataset|[THUCNews](http://thuctc.thunlp.org/)|
+
 
 ## Performance
 
 | Model | acc | loss |
 | ------ | ------ | ------ | 
 |FM|0.8535|0.681576|
+|FastText|0.998|0.02|
 
 ## Reference 
 
