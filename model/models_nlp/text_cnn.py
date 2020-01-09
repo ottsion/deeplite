@@ -20,10 +20,11 @@ class TextCNN(BaseModel):
         return x
 
     def forward(self, x):
-        x = self.embedding(x[0])   # bath_size, embed_dim
-        x = x.unsqueeze(1)         # bath_size, 1, embed_dim
-        x = torch.cat([self.conv_and_pool(x, conv) for conv in self.convs], dim=1)
+        x = x[:, 0, :].unsqueeze(1)  # only choose word level
+        x = self.embedding(x)   # bath_size, words_length, embed_dim
+        list_x = [self.conv_and_pool(x, conv) for conv in self.convs]
+        x = torch.cat(list_x, dim=1)
         x = self.dropout(x)
         x = self.linear(x)
-        return x
+        return F.log_softmax(x, dim=1)
 

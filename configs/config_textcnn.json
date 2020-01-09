@@ -1,0 +1,58 @@
+{
+    "name": "TextCNN",
+    "n_gpu": 1,
+
+    "arch": {
+        "type": "TextCNN",
+        "args": {
+            "vocab_size": 4065,
+            "embed_dim": 125,
+            "num_filters": 15,
+            "filter_sizes": [2, 3, 4, 5],
+            "dropout": 0.4,
+            "n_classes": 14
+        }
+    },
+    "data_loader": {
+        "type": "ThucnewsDataLoader",
+        "args":{
+            "data_dir": "datas/thucnews/",
+            "batch_size": 128,
+            "shuffle": true,
+            "validation_split": 0.1,
+            "num_workers": 0
+        }
+    },
+    "optimizer": {
+        "type": "Adam",
+        "args":{
+            "lr": 0.0009,
+            "weight_decay": 0,
+            "amsgrad": true
+        }
+    },
+    "loss": "nll_loss",
+    "metrics": [
+        "accuracy"
+    ],
+    "lr_scheduler": {
+        "type": "StepLR",
+        "args": {
+            "step_size": 50,
+            "gamma": 0.1
+        }
+    },
+    "trainer": {
+        "epochs": 150,
+
+        "save_dir": "saved/",
+        "save_period": 1,
+        "verbosity": 2,
+        
+        "monitor": "min val_loss",
+        "early_stop": 10,
+
+        "image":false,
+        "tensorboard": true
+    }
+}

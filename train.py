@@ -23,10 +23,12 @@ def main(config):
     data_loader = config.init_obj('data_loader', module_data)
     valid_data_loader = data_loader.split_validation()
 
-    if config['name'] == "fm":
+    if config['name'] == "FM":
         import model.models_rec.fm as module_arch
     elif config['name'] == "DeepFM":
         import model.models_rec.deepfm as module_arch
+    elif config['name'] == "TextCNN":
+        import model.models_nlp.text_cnn as module_arch
     else:
         from model.models_nlp import fast_text as module_arch
 
