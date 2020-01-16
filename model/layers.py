@@ -64,7 +64,7 @@ class FieldAwareFactorizationMachine(nn.Module):
         self.embeddings = nn.ModuleList([
             nn.Embedding(sum(field_dims), embed_dim) for _ in range(self.num_fields)
         ])
-        self.offsets = np.arrat(0, *np.cumsum(field_dims)[:-1], dtype=np.long)
+        self.offsets = np.array((0, *np.cumsum(field_dims)[:-1]), dtype=np.long)
         for embedding in self.embeddings:
             nn.init.xavier_uniform_(embedding.weight.data)
 
